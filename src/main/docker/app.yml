@@ -1,0 +1,15 @@
+version: '2'
+services:
+    contacts-app:
+        image: contacts
+        external_links:
+            - contacts-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/contacts
+        ports:
+            - 8080:8080
+    contacts-postgresql:
+        extends:
+            file: postgresql.yml
+            service: contacts-postgresql
